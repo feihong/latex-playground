@@ -71,7 +71,7 @@
 
 <div id="header">
   <h1>LaTeX Playground</h1>
-  <button onclick="handleViewCheatsheetClick()">View cheatsheet</button>
+  <button onclick="showCheatSheet()">View cheatsheet</button>
 </div>
 <div id="content">
   <textarea id="input" oninput="handleInput()"></textarea>
@@ -81,6 +81,7 @@
 
 <script>
   window.addEventListener('load', () => {
+    showCheatSheet()
     handleInput()
   })
 
@@ -92,7 +93,7 @@
     MathJax.typeset([resultsEl])
   }
 
-  function handleViewCheatsheetClick() {
+  function showCheatSheet() {
     document.getElementById('input').value = document.getElementById('cheatsheet').innerText.trim()
     handleInput()
   }
@@ -113,24 +114,24 @@ Align:
 
 $$
 \begin{align*}
-a^3 - b^3 =& (a-b)(a^2 + ab + b^2) \\
-=& (a-b)[a^2 - 2ab + 3ab + b^2] \\
-=& (a-b)[(a^2 - 2ab + b^2) - 3ab] \\
-=& (a-b)[(a-b)^2 - 3ab]
+a^3 - b^3 =& (a-b)(a^2 + ab + b^2)\\
+=& (a-b)(a^2 - 2ab + 3ab + b^2)\\
+=& (a-b)[(a^2 - 2ab + b^2) + 3ab]\\
+=& (a-b)[(a-b)^2 + 3ab]
 \end{align*}
 $$
 
 Array:
 
 $$
-\begin{array}{lcc}
-a + b & = & 2 \sqrt{3}\\
-a - b & = & 4\\
+\begin{array}{rcrcr}
+a & + & b & = & 2 \sqrt{3}\\
+a & - & b & = & 4\\
 \hline
-2a & = & 4+2 \sqrt{3}
+2a & & & = & 4+2 \sqrt{3}\\
+a & & & = & 2 + \sqrt{3}
 \end{array}
 $$
-
 </div>
 
 </body>
