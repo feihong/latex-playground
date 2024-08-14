@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LaTeX Playground</title>
+
+<script>
+  window.MathJax = {
+    startup: {
+      typeset: false,
+    },
+    tex: {
+      inlineMath: [
+        ['$', '$'],
+      ],
+      displayMath: [
+        ['$$', '$$'],
+      ],
+    },
+    svg: {
+      // scale: 1.5,
+      fontCache: 'global',
+      displayAlign: 'left',
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0 1em 1em 1em;
+  }
+
+  #header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+
+  }
+
+  #input {
+    flex: 1;
+  }
+
+  #results {
+    background-color: #eeeeee;
+    white-space: pre-line;
+    flex: 1;
+    padding: 1em;
+    font-size: 1.2em;
+  }
+</style>
+
+</head>
+
+<body>
+
+<div id="header">
+  <h1>LaTeX Playground</h1>
+  <button onclick="showCheatSheet()">View cheatsheet</button>
+</div>
+<div id="content">
+  <textarea id="input" oninput="handleInput()"></textarea>
+  <div id="results"></div>
+</div>
+
+
+<script>
+  window.addEventListener('load', () => {
+    showCheatSheet()
+    handleInput()
+  })
+
+  function handleInput() {
+    const value = document.getElementById('input').value
+
+    const resultsEl = document.getElementById('results')
+    resultsEl.textContent = value
+    MathJax.typeset([resultsEl])
+  }
+
+  function showCheatSheet() {
+    document.getElementById('input').value = document.getElementById('cheatsheet').innerText.trim()
+    handleInput()
+  }
+</script>
+
+<div id="cheatsheet" style="display:none">
+Multiplication dot: $2 \cdot 4 = 8$
+
+Fraction: $\frac{x-1}{2y}$
+
+Exponent: $x^3 + 3x^{y+1} + 8^\frac{2}{3}$
+
+Subscript: $x_1 + x_2 + \ldots + x_n$
+
+Root: $\sqrt 2 + \sqrt[3]{45+x}$
+
+Align:
+
+$$
+\begin{align*}
+a^3 - b^3 =& (a-b)(a^2 + ab + b^2)\\
+=& (a-b)(a^2 - 2ab + 3ab + b^2)\\
+=& (a-b)[(a^2 - 2ab + b^2) + 3ab]\\
+=& (a-b)[(a-b)^2 + 3ab]
+\end{align*}
+$$
+
+Array:
+
+$$
+\begin{array}{rcrcr}
+a & + & b & = & 2 \sqrt{3}\\
+a & - & b & = & 4\\
+\hline
+2a & & & = & 4+2 \sqrt{3}\\
+a & & & = & 2 + \sqrt{3}
+\end{array}
+$$
+</div>
+
+</body>
+</html>
